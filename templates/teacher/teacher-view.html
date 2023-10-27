@@ -27,7 +27,17 @@
             <!-- PAGE-HEADER -->
             <div class="page-header">
                 <h1 class="page-title">Teacher List View</h1>
-                <a href="{% url 'teacher-create' %}" class="btn btn-danger btn-pill">Add <i class="fa fa-plus"></i></a>
+                <div>
+
+                    <form method="post" action="{% url 'file-upload' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <input type="file" name="file" id="" required>
+                            <button type="submit"  class="btn btn-warning btn-pill">Bulk Upload </button>
+
+                            <a href="{% url 'teacher-create' %}" class="btn btn-danger btn-pill">Add <i class="fa fa-plus"></i></a>
+                    </form>
+                </div>
+
 
             </div>
             <!-- PAGE-HEADER END -->

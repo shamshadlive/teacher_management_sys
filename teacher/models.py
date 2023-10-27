@@ -30,12 +30,6 @@ class Subject(models.Model):
 
 #teacher model 
 class Teacher(models.Model):
-
-
-
-    # room = models.ForeignKey(Room,on_delete=models.SET_NULL,null=True)
-    
-    
     teacher_first_name = models.CharField(max_length=255)
     teacher_last_name = models.CharField(max_length=255)
     teacher_email = models.EmailField(max_length=100,unique=True)
@@ -55,4 +49,7 @@ class Teacher(models.Model):
         
         
     def __str__(self):
-        return str(self.tchr_first_name)
+        return str(self.teacher_first_name)
+    
+class File(models.Model):
+    file = models.FileField(upload_to='teacher/csv/')

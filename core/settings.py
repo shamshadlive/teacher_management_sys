@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     #custom apps
     'accounts',
     'teacher',
-    'rest_framework'
+    'rest_framework',
+    'django_pandas',
 ]
 
 MIDDLEWARE = [

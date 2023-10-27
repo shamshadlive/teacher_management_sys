@@ -17,5 +17,6 @@ urlpatterns = [
     path("teachers/", views.TeacherView.as_view(), name="all-teacher-view"),
     path("teachers/update/<int:pk>/", views.TeacherUpdateView.as_view(), name="teacher-update"),
     path("teachers/create/", views.TeacherCreateView.as_view(), name="teacher-create"),
+    path("subject/create/", views.SubjectCreateView.as_view(), name="subject-create"),
     path('api/', include(router.urls)),
     ]

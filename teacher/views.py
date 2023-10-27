@@ -233,3 +233,28 @@ def csv_upload(request):
         
     messages.success(request, 'Teachers Created successfully.')
     return redirect('all-teacher-view')
+
+
+
+
+class SubjectCreateView(LoginRequiredMixin,CreateView):
+    
+    """ Create a  Subject """
+    
+    model = Subject
+    template_name = 'teacher/subject-create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('all-teacher-view')
+  
+    def get_form(self, form_class=None):
+            form = super().get_form(form_class)
+            for field_name, field in form.fields.items():
+                if field_name not in ['is_active']:
+                    field.widget.attrs['class'] = 'form-control'
+            
+            return form
+        
+    def form_valid(self, form):
+            messages.success(self.request, 'Subject Created successfully.')
+            return super().form_valid(form)
+

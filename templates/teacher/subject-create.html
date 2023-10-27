@@ -1,0 +1,87 @@
+
+{% load static %}
+
+{% include "teacher/header.html" %} 
+<!--app-content open-->
+<div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                    </div>
+
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                
+                <a href="{% url 'all-teacher-view' %}" class="btn btn-danger btn-pill">All teachers List</a>
+
+            </div>
+            <!-- PAGE-HEADER END -->
+
+
+            <form method="post" class="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- IMAGE UPLOADER -->
+                  
+                    <!-- IMAGE UPLOADER end -->
+
+                    <!-- DETAILS START -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Add new Subject</h3>
+                            </div>
+                            <div class="card-body">
+                               <!-- SUBMIT START -->
+                               <div class="col-lg-12 ">
+                                <div class="mt-5">
+                                    {{form}}
+                                    <button type="submit" class="btn btn-warning btn-pill mt-5">Submit</button>
+                                </div>
+                            </div>
+                             <!-- SUBMIT END -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DETAILS END -->
+
+
+                </div>
+
+        </div>
+        </form>
+
+
+    </div>
+    <!-- CONTAINER END -->
+</div>
+</div>
+<!--app-content close-->
+{% include "teacher/footer.html" %} 
+<script>
+    $('.multi-field-wrapper').each(function () {
+      var $wrapper = $('.multi-fields', this);
+      $(".add-field", $(this)).click(function (e) {
+        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input,textarea').val('')
+          .focus();
+      });
+      $('.multi-field .remove-field', $wrapper).click(function () {
+        if ($('.multi-field', $wrapper).length > 1)
+          $(this).parent('.multi-field').remove();
+      });
+    });
+  </script>

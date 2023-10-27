@@ -107,9 +107,9 @@
                                                     {{teacher.teacher_last_name}}
                                                 </td>
                                                 <td>
-                                                  
-                                                    {{teacher.teacher_subjects}}
-                                                   
+                                                    {% for subject in teacher.teacher_subjects.all %}
+                                                    {{subject}},
+                                                    {% endfor %}
                                                 </td>
                                                 <td>
                                                     {{teacher.teacher_phone_number}}

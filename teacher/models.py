@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 
-#room model 
+#room model -- currently not using 
 class Room(models.Model):
 
     room_name = models.CharField(max_length=255)
@@ -16,10 +16,11 @@ class Room(models.Model):
     def __str__(self):
         return self.room_name
 
+
 #subject model 
 class Subject(models.Model):
 
-    sub_name = models.CharField(max_length=255)
+    sub_name = models.CharField(max_length=255,unique=True)
     is_active = models.BooleanField(default=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,9 +36,8 @@ class Teacher(models.Model):
     teacher_email = models.EmailField(max_length=100,unique=True)
     teacher_phone_number = models.CharField(max_length=12)
     # teacher_room = models.ForeignKey(Room,on_delete=models.SET_NULL,null=True)
-    # teacher_subjects = models.ManyToManyField(Subject)
+    teacher_subjects = models.ManyToManyField(Subject)
     teacher_room = models.CharField(max_length=10)
-    teacher_subjects = models.CharField(max_length=255)
 
     teacher_profile_pic = models.ImageField(upload_to='teacher/profile_pic/',null=True,blank=True)
     is_active = models.BooleanField(default=True)
@@ -51,5 +51,6 @@ class Teacher(models.Model):
     def __str__(self):
         return str(self.teacher_first_name)
     
+#to handle the files uploaded
 class File(models.Model):
     file = models.FileField(upload_to='teacher/csv/')

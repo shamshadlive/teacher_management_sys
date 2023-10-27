@@ -1,0 +1,71 @@
+
+ {% load static %}
+
+ {% include "teacher/header.html" %} 
+ <!--app-content open-->
+
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    
+                      
+                        {% if messages %}
+                        <div class="alert alert-primary alert-dismissible fade show my-2"   role="alert">
+                        <ul class="messages my-2">
+                            {% for message in messages %}
+                           
+
+                                {{ message }}
+                             
+                            {% endfor %}
+                        </ul>
+                        
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        
+                        </div>
+                        {% endif %}
+
+  
+                      
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Dashboard</h1>
+                            <div>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- PAGE-HEADER END -->
+
+                         <!-- ROW OPEN -->
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                                <div class="card bg-primary img-card box-primary-shadow">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                <h2 class="mb-0 number-font">7,865</h2>
+                                                <p class="text-white mb-0">Total number of teachers</p>
+                                            </div>
+                                            <div class="ms-auto"> <i class="fa fa-phone text-white fs-30 me-2 mt-2"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <!-- ROW CLOSED -->
+
+
+
+                    </div>
+                    <!-- CONTAINER END -->
+                </div>
+            </div>
+            <!--app-content close-->
+{% include "teacher/footer.html" %} 

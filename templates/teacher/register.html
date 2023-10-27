@@ -1,0 +1,156 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'teacher/assets/images_ex/fav.png' %}" />
+
+    <!-- TITLE -->
+    <title>Join IT Tech Admin | Register</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="{% static 'teacher/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link href="{% static 'teacher/assets/css/custom.css' %}" rel="stylesheet" />
+    <link href="{% static 'teacher/assets/css/style.css' %}" rel="stylesheet" />
+	
+    <link href="{% static 'teacher/assets/css/style-custom.css' %}" rel="stylesheet" />
+    <link href="{% static 'teacher/assets/css/dark-style.css' %}" rel="stylesheet" />
+    <link href="{% static 'teacher/assets/css/transparent-style.css' %}" rel="stylesheet">
+    <link href="{% static 'teacher/assets/css/skin-modes.css' %}" rel="stylesheet" />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="{% static 'teacher/assets/css/icons.css' %}" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'teacher/assets/colors/color1.css' %}" />
+
+</head>
+
+<body class="app sidebar-mini ltr login-img">
+
+    <!-- BACKGROUND-IMAGE -->
+    <div class="">
+
+       
+
+        <!-- PAGE -->
+        <div class="page">
+            <div class="">
+
+                <!-- CONTAINER OPEN -->
+               
+                <div class="container-login100">
+                    <div class="wrap-login100 p-6">
+					 <div class="col col-login mx-auto m-5">
+					   <div class="text-center">
+							<a href="{% url 'home' %}"><img src="{% static 'teacher/assets/images_ex/logo.png' %}" class="header-brand-img" alt=""></a>
+						</div>
+					</div>
+
+                   
+
+                        <form class="login100-form validate-form" method="post">
+                            {% csrf_token %}
+                           
+                               
+                               
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid Name is required: User">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-code text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" type="text" placeholder="Name" name="first_name" value="{{ form.first_name.value|default:'' }}">
+                                            </div>
+                                            {{form.first_name.errors}}
+
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-email text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" type="email" placeholder="Email" name="email" value="{{ form.email.value|default:'' }}">
+                                                
+                                            </div>
+                                            {{form.email.errors}}
+
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" type="password" placeholder="Password" name="password">
+                                                
+                                            </div>
+                                            {{form.password.errors}}
+
+                                            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                               
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ message }}
+                                                  </div>
+                        
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+
+                                           
+                                            <div class="container-login100-form-btn">
+                                                <button type="submit" class="login100-form-btn btn-primary">
+                                                       Register Now
+                                                </button>
+                                            </div>
+                                           
+
+                          
+
+                        </form>
+
+                        Already account login now <a href="{% url 'login-page' %}" class="">
+                            Login Now
+                     </a>
+                    </div>
+                </div>
+                <!-- CONTAINER CLOSED -->
+            </div>
+        </div>
+        <!-- End PAGE -->
+
+    </div>
+    <!-- BACKGROUND-IMAGE CLOSED -->
+
+    <!-- JQUERY JS -->
+    <script src="{% static 'teacher/assets/js/jquery.min.js' %}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'teacher/assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'teacher/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="{% static 'teacher/assets/js/show-password.min.js' %}"></script>
+
+    <!-- GENERATE OTP JS -->
+    <script src="{% static 'teacher/assets/js/generate-otp.js' %}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{% static 'teacher/assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{% static 'teacher/assets/js/themeColors.js' %}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{% static 'teacher/assets/js/custom.js' %}"></script>
+
+
+</body>
+
+</html>

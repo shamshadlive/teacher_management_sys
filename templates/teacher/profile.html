@@ -1,0 +1,224 @@
+{% load static %}
+
+{% include "teacher/header.html" %} 
+  <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+
+                        {% if messages %}
+                        <div class="alert alert-primary alert-dismissible fade show my-2"   role="alert">
+                        <ul class="messages my-2">
+                            {% for message in messages %}
+                           
+
+                                {{ message }}
+                             
+                            {% endfor %}
+                        </ul>
+                        
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        
+                        </div>
+                        {% endif %}
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Profile View</h1>
+                            
+                        </div>
+                        <!-- PAGE-HEADER END -->
+ <!-- ROW-1 OPEN -->
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Profile</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center chat-image mb-5">
+                                            <div class="avatar avatar-xxl chat-profile mb-3 brround">
+                                                <a class="" href="#"><img alt="avatar" src="{% static 'teacher/assets/images_ex/user.png' %}" class="brround"></a>
+                                            </div>
+                                            <div class="main-chat-msg-name">
+                                                <a href="profile.html">
+                                                    <h5 class="mb-1 text-dark fw-semibold">Admin</h5>
+                                                </a>
+                                                <p class="text-muted mt-0 mb-0 pt-0 fs-13">KFWC</p>
+                                            </div>
+                                        </div>
+                                        
+                                </div>
+                                
+                            </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Edit Password</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                            <label class="form-label">Current Password</label>
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 form-control" id="userProfileFieldOldPassword" type="password" placeholder="Current Password" autocomplete="current-password" name="old_password">
+                                            </div>
+                                            <p class="text-danger small m-0 p-0" id="userProfileFieldOldPasswordError"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">New Password</label>
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle1">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 form-control" id="userProfileFieldNewPassword1" type="password" placeholder="New Password" autocomplete="new-password" name="password1">
+                                            </div>
+                                            <p class="text-danger small m-0 p-0" id="userProfileFieldNewPassword1Error"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Confirm Password</label>
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle2">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-white" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 form-control" id="userProfileFieldNewPassword2" type="password" placeholder="Confirm Password" autocomplete="new-password" name="password2"> 
+                                            </div>
+                                            <p class="text-danger small m-0 p-0" id="userProfileFieldNewPassword2Error"></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-end">
+                                        <button  class="btn btn-primary"  onclick="UpdateFieldUserProfilePassword('userProfileFieldOldPassword','userProfileFieldNewPassword1','userProfileFieldNewPassword2')">Update</button>
+                                        <a href="javascript:void(0)" class="btn btn-danger">Cancel</a>
+                                    </div>
+                                        </div>
+                                        
+                                       
+                                    </div>
+                                   
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        <!-- ROW-1 CLOSED -->
+
+
+
+                    </div>
+                    <!-- CONTAINER END -->
+                </div>
+            </div>
+            <!--app-content close-->
+
+            <script>
+
+// Function to retrieve the CSRF token from the cookie
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+//password match check
+
+function matchPassword(field1,field2) {  
+    var pw1 = document.getElementById(field1);  
+    var pw2 = document.getElementById(field2); 
+    if(pw1.value != pw2.value)  
+    {   
+      return false
+    } else {  
+      return true
+    }  
+  }  
+
+
+
+//password change user
+function UpdateFieldUserProfilePassword(get_old_password,get_password1,get_password2) {
+
+    document.getElementById(get_old_password+'Error').innerText = ''
+    document.getElementById(get_password1+'Error').innerText = ''
+    document.getElementById(get_password2+'Error').innerText = ''
+
+    var old_password = document.getElementById(get_old_password)
+    var password1 = document.getElementById(get_password1)
+    var password2 = document.getElementById(get_password2)
+
+    if (!old_password.value){
+      document.getElementById(get_old_password+'Error').innerText = 'Please Enter Password'
+      return
+    }
+
+    if (!password1.value){
+      document.getElementById(get_password1+'Error').innerText = 'Please Enter Password'
+      return
+    }
+
+    if (!password2.value){
+      document.getElementById(get_password2+'Error').innerText = 'Please Enter Password'
+      return
+    }
+
+    if(matchPassword(get_password1,get_password2))
+    {
+      url = '/users/basic/changepassword'
+      var data = {
+        old_password: old_password.value,
+        password2: password2.value,
+      };
+      
+      $.ajax({
+          type: "POST",
+          url: url,  // Replace with the actual URL for your view
+          dataType: "json",
+          data: JSON.stringify(data),
+          headers: {
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRFToken": getCookie("csrftoken"), 
+            },
+            success: (data) => {
+              if (data.status === "success") {
+                // Password change success
+                console.log(data);
+                location.reload();
+            } else {
+                // Password change error
+                console.log(data);
+                // Display the error message on the page
+                document.getElementById(get_old_password + 'Error').innerText =data.message;
+            }
+          },
+          error: (xhr, status, error) => {
+              // Display the error message on the page
+              document.getElementById(get_old_password + 'Error').innerText = 'Error: ' + xhr.responseText;
+              console.log("error");
+              console.log(error);
+          }
+      });
+      
+    }
+    else{
+      document.getElementById(get_password2+'Error').innerText = 'Password Not Match'
+    }
+
+};
+
+            </script>
+			
+            {% include "teacher/footer.html" %} 

@@ -1,5 +1,7 @@
 from django.db import models
 from accounts.models import User
+from django.core.exceptions import ValidationError
+
 # Create your models here.
 
 #room model 
@@ -29,14 +31,28 @@ class Subject(models.Model):
 #teacher model 
 class Teacher(models.Model):
 
-    teacher = models.ForeignKey(to=User,on_delete=models.CASCADE)
-    subject = models.ManyToManyField(Subject)
-    room = models.ForeignKey(Room,on_delete=models.SET_NULL,null=True)
+
+
+    # room = models.ForeignKey(Room,on_delete=models.SET_NULL,null=True)
+    
+    
+    teacher_first_name = models.CharField(max_length=255)
+    teacher_last_name = models.CharField(max_length=255)
+    teacher_email = models.EmailField(max_length=100,unique=True)
+    teacher_phone_number = models.CharField(max_length=12)
+    # teacher_room = models.ForeignKey(Room,on_delete=models.SET_NULL,null=True)
+    # teacher_subjects = models.ManyToManyField(Subject)
+    teacher_room = models.CharField(max_length=10)
+    teacher_subjects = models.CharField(max_length=255)
+
     teacher_profile_pic = models.ImageField(upload_to='teacher/profile_pic/',null=True,blank=True)
     is_active = models.BooleanField(default=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
+        
+        
+        
     def __str__(self):
-        return self.teacher
+        return str(self.tchr_first_name)

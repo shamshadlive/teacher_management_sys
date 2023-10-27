@@ -1,0 +1,106 @@
+.login-img {
+    position: relative;
+    background-image: url(../images_ex/bg1.jpg) !important;
+}
+.login-img::before {
+
+    background: linear-gradient(to right, #0000006e 0%, #00000091 100%) !important;
+
+}
+.header-brand-img {
+    width: 130px !important;
+}
+.img-td{
+	width: 100px;
+}
+
+
+/* logo size */
+.header-brand-img{
+    height: 70px;
+    width: auto !important;
+}
+.side-menu__item.active .side-menu__icon{
+    color: #070000 !important;
+}
+.side-menu .side-menu__icon{
+    color: #00aeef !important;
+}
+#back-to-top{
+    background: #00aeef !important;
+    border: 2px solid #00aeef !important;
+}
+.side-menu__item.active{
+    color: #000000 !important;
+    font-weight: 600;
+}
+.header-right-icons .nav-link.icon{
+    color: #00aeef !important;
+}
+.app-sidebar__toggle{
+    color: #00aeef !important;  
+}
+.footer a:not(.btn){
+    color: #00aeef !important;  
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    background: #00aeef !important;
+    border: 2px solid #00aeef !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+    background: #00aeef !important;
+}
+.page-item.active .page-link{
+    background: #00aeef !important;
+    border: 2px solid #00aeef !important;
+}
+.dropify-font-upload:before, .dropify-wrapper .dropify-message span.file-icon:before{
+    color: #00aeef !important;  
+}
+.responsive-navbar .profile-1 .dropdown-item .dropdown-icon{
+    color: #00aeef !important;  
+}
+.input-group-text{
+    background: #00aeef !important;
+}
+.icon_bx{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 60%; 
+}
+.icon_bx i{
+    font-size: 65px;
+    color: #f1f1f1;
+    padding: 20px;
+}
+.dash_board .card{
+    overflow: hidden;
+}
+.dash-content{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.count_dash{
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 50px;
+    color: #c2c7cb;
+}
+.content_dash{
+  font-size: 13px;
+  color: #c2c7cb; 
+}
+.dash_board .card-body {
+    padding: 0;
+}
+.dash_board  .card{
+    border-radius: 3px;
+}
+.float-right{
+    float: right;
+}

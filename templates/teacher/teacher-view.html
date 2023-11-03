@@ -67,13 +67,17 @@
                         </div>
 
                         <div class="card-header">
-                            Filer by subject
+                           <p class="p-3 m-3">Filer by subject </p>
+                            <div class="d-flex">
+                                
                             {% for i in subjects %}
                                 <li class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input filter-checkbox" id="subject-{{i.id}}" data-filter="subject" value="{{i.id}}">
                                     <label class="custom-control-label font-size-base" for="subject-{{i.id}}">{{i.sub_name}} ({{i.teacher_set.all.count}})</label>
                                 </li>
                             {% endfor %}
+                            
+                        </div>
 
                         </div>
 

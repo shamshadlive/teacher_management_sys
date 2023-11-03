@@ -1,18 +1,18 @@
     //delete function getting the modal and button
     var modal = document.getElementById("modaldemo5");
-    var yesButton = modal.querySelector("[data-action='delete-course']");
+    var yesButton = modal.querySelector("[data-action='delete-teacher']");
 
     modal.addEventListener("show.bs.modal", function(event) {
         var triggerButton = event.relatedTarget;
-        var coursePk = triggerButton.getAttribute("data-course-pk");
-        yesButton.setAttribute("data-course-pk", coursePk); 
+        var teacherPk = triggerButton.getAttribute("data-teacher-pk");
+        yesButton.setAttribute("data-teacher-pk", teacherPk); 
     });
 
     yesButton.addEventListener("click", function() {
-        var coursePk = yesButton.getAttribute("data-course-pk");
-        if (coursePk) {
-            // Construct the GET URL with the course pk and redirect the user
-            var getUrl = `/shorterm-course/${coursePk}/delete/`;
+        var teacherPk = yesButton.getAttribute("data-teacher-pk");
+        if (teacherPk) {
+            // Construct the GET URL with the teacher pk and redirect the user
+            var getUrl = `/teachers/${teacherPk}/delete/`;
             window.location.href = getUrl;
         }
         

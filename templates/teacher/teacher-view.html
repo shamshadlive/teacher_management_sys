@@ -65,6 +65,19 @@
                         <div class="card-header">
                             <h3 class="card-title">Teacher List Table</h3>
                         </div>
+
+                        <div class="card-header">
+                            Filer by subject
+                            {% for i in subjects %}
+                                <li class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="subject-{{i.id}}" data-filter="subject" value="{{i.id}}">
+                                    <label class="custom-control-label font-size-base" for="subject-{{i.id}}">{{i.sub_name}} ({{i.teacher_set.all.count}})</label>
+                                </li>
+                            {% endfor %}
+
+                        </div>
+
+                      
                         <div class="card-body">
 
                             <div class="table-responsive">
@@ -84,7 +97,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="teacherData">
                                             <!-- TABLE DETAILS -->
                                             <!-- looping thorugh courses  -->
 
@@ -135,7 +148,7 @@
                                                     </a>
 
                                                     <a class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#modaldemo5" data-course-pk="{{ course.pk }}">
+                                                        data-bs-target="#modaldemo5" data-teacher-pk="{{ teacher.pk }}">
                                                         <i class="side-menu__icon fe fe-trash text-white"></i>
                                                     </a>
                                                 </td>
@@ -213,7 +226,7 @@
                    
                 </div>
                 <div class="modal-footer justify-content-center">
-                <button class="btn btn-success" data-action="delete-course">Yes</button>
+                <button class="btn btn-success" data-action="delete-teacher">Yes</button>
                     <button aria-label="Close" class="btn btn-danger pd-x-25" data-bs-dismiss="modal">Cancel</button>
 
                 </div>
@@ -287,5 +300,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
+     <!-- CUSTOME FILTER JS -->
+     <!-- url -->
+     <script type=text/javascript>
+        var filter_url = "{% url 'teacher-filter-data' %}" </script>
 
+     <script src="{% static 'teacher/assets/js/newcustom.js' %}"></script>
+        
     {% include "teacher/footer.html" %} 

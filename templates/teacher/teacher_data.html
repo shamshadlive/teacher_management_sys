@@ -1,0 +1,61 @@
+
+{% load static %}
+{% for teacher in teachers %}
+<tr>
+    <td>{{forloop.counter}}</td>
+    <td>
+        
+        <img class="d-block img-fluid br-5 img-td"
+            src="{% if teacher.teacher_profile_pic %}
+                {{teacher.teacher_profile_pic.url}}
+                {% else %}
+                {% static 'teacher/assets/images_EX/No_image_available.svg.webp' %}
+                {% endif %}" alt="">
+    
+    </td>
+    <td> {{teacher.teacher_first_name}}</td>
+    <td>
+        {{teacher.teacher_last_name}}
+    </td>
+    <td>
+        {% for subject in teacher.teacher_subjects.all %}
+        {{subject}},
+        {% endfor %}
+    </td>
+    <td>
+        {{teacher.teacher_phone_number}}
+    </td>
+    <td>
+        {{teacher.teacher_room}}
+    </td>
+
+    
+    
+    <td>
+        {% if teacher.is_active %}
+        <button class="btn btn-success"><span >Active</span></button>
+        {% else %}
+        <button class="btn btn-danger"> <span >Inactive</span></button>
+        {% endif %}
+
+
+    </td>
+    <td>
+        <a class=" btn btn-info" href="{% url 'teacher-update' teacher.pk %}">
+            <i class="side-menu__icon fe fe-edit"></i>
+        </a>
+
+        <a class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#modaldemo5" data-course-pk="{{ course.pk }}">
+            <i class="side-menu__icon fe fe-trash text-white"></i>
+        </a>
+    </td>
+</tr>
+
+{% empty %}
+<tr>
+    <td>
+    No Teacher Found
+    </td>
+</tr>
+    {% endfor %}

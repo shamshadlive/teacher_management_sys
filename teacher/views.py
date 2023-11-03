@@ -14,7 +14,12 @@ import pandas as pd
 from accounts.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 from .forms import UserForm
+from django.http import HttpResponseRedirect
+from django.core.files import File as objFile
+import os
 # Create your views here.
 
 
@@ -103,10 +108,31 @@ class TeacherView(LoginRequiredMixin,ListView):
         search_query = self.request.GET.get('search', None)
         if search_query:
             # Filter the queryset based on the search query
-            queryset = queryset.filter(Q(tchr_last_name__startswith=search_query)    )
+            queryset = queryset.filter(Q(teacher_last_name__startswith=search_query)    )
         
         return queryset
-  
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Add additional context data here
+        context['subjects'] = Subject.objects.filter(is_active=True).order_by('sub_name')
+
+        return context
+    
+def teacher_filter_data(request):
+    get_subjects = request.GET.getlist('subject[]')
+    
+
+    if get_subjects:
+       teachers = Teacher.objects.filter(teacher_subjects__id__in=get_subjects).order_by('-updated_at')
+    else:
+       teachers = Teacher.objects.all().order_by('-updated_at')
+
+    updated_data = render_to_string('teacher/teacher_data.html', {'teachers': teachers})
+
+    return JsonResponse({'data': updated_data})
+
 
 class TeacherUpdateView(LoginRequiredMixin,UpdateView):
     
@@ -166,6 +192,18 @@ class TeacherCreateView(LoginRequiredMixin,CreateView):
             return super().form_valid(form)
 
 
+class TeacherDeleteView(DeleteView):
+    """ delete a  single teacher """
+    model = Teacher
+    success_url = reverse_lazy('all-teacher-view')
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+
 class TeacherViewSet(viewsets.ModelViewSet):
     """
     API simple ViewSet for creating , editing teachers.
@@ -192,11 +230,18 @@ def create_db(file_path):
                 teacher_obj = Teacher.objects.create(
                     teacher_first_name=teacher[0],
                     teacher_last_name=teacher[1],
-                    # teacher_profile_pic=teacher[3],
+                    # teacher_profile_pic=teacher[2],
                     teacher_email=teacher[3],
                     teacher_phone_number=teacher[4],
                     teacher_room=teacher[5],
                 )
+                
+                # image_filename = teacher[2]
+               
+                # if image_filename and os.path.exists(image_filename):
+                #     with open(image_filename, 'rb') as image_file:
+                #         teacher_obj.teacher_profile_pic.save(image_filename, objFile(image_file), save=True)
+                        
                 
                 #setting subject by checking the count 
                 subject_names = [subject.strip() for subject in teacher[6].split(',')]

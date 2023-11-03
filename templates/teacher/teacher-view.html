@@ -111,12 +111,7 @@
                                                 <td>
                                                     
                                                     <img class="d-block img-fluid br-5 img-td"
-                                                        src="{% if teacher.teacher_profile_pic %}
-                                                            {{teacher.teacher_profile_pic.url}}
-                                                            {% else %}
-                                                            {% static 'teacher/assets/images_EX/No_image_available.svg.webp' %}
-                                                            {% endif %}
-                                                            " alt="">
+                                                        src="{% if teacher.teacher_profile_pic %}{{teacher.teacher_profile_pic.url}}{% else %}{% static 'teacher/assets/images_EX/No_image_available.svg.webp' %}{% endif %}" alt="">
                                                 
                                                 </td>
                                                 <td> {{teacher.teacher_first_name}}</td>
